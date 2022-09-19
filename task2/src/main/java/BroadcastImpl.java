@@ -36,7 +36,6 @@ public class BroadcastImpl implements Broadcast {
 
     }
 
-
     @Override
     public Schedule getSchedule() {
         return schedule;
