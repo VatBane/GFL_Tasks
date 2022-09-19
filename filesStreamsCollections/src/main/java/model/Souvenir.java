@@ -15,6 +15,16 @@ public class Souvenir {
         this.price = price;
     }
 
+    @Override
+    public String toString() {
+        return "Souvenir{" +
+                "title='" + title + '\'' +
+                ", manufacturer=" + manufacturer +
+                ", date=" + date +
+                ", price=" + price +
+                '}';
+    }
+
     public String getTitle() {
         return title;
     }

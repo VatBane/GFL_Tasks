@@ -11,6 +11,15 @@ public class Manufacturer {
         this.country = country;
     }
 
+    @Override
+    public String toString() {
+        return "Manufacturer{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", country='" + country + '\'' +
+                '}';
+    }
+
     public long getId() {
         return id;
     }
