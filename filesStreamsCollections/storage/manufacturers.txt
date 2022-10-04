@@ -1,0 +1,3 @@
+SOMeNEW,Netherlands
+KoreaInc,Korea
+BGCorp,USA

@@ -1,35 +1,23 @@
 package model;
 
+import java.util.Objects;
+
 public class Manufacturer {
-    private long id;
     private String title;
     private String country;
 
-    public Manufacturer(long id, String title, String country) {
-        this.id = id;
+    public Manufacturer(String title, String country) {
         this.title = title;
         this.country = country;
     }
 
     @Override
     public String toString() {
-        return "Manufacturer{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", country='" + country + '\'' +
-                '}';
+        return "title='" + title + "', country='" + country;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
+    public String toFile() {
+        return title + "," + country;
     }
 
     public void setTitle(String title) {
@@ -42,5 +30,29 @@ public class Manufacturer {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public static Manufacturer fromLine(String s) {
+        if (s.isEmpty()) return null;
+        String[] params = s.split(",");
+        return new Manufacturer(params[0], params[1]);
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Manufacturer))
+            return false;
+        if (!title.equals(((Manufacturer) obj).title))
+            return false;
+        return country.equals(((Manufacturer) obj).country);
+    }
+
+    @Override
+    public int hashCode() {
+        return title.hashCode() + country.hashCode();
     }
 }
