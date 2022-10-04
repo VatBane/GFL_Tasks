@@ -10,6 +10,7 @@ import java.util.List;
  * Для того чтобы не делать непонятное наследование классов
  * создал наследование интерфейсов
  */
+
 public interface Presenter {
     String getName();
 

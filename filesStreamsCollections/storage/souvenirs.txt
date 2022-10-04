@@ -1,0 +1,6 @@
+1,Magnet,BGCorp,2021-09-20,100.0
+2,Doll,BGCorp,2021-09-10,78.9
+3,Pop-it,KoreaInc,2022-09-15,98.4
+4,Doll,KoreaInc,2022-06-16,55.0
+5,Pop-it,SOMeNEW,2022-08-10,101.2
+7,IDK,KoreaInc,2022-10-01,100.1

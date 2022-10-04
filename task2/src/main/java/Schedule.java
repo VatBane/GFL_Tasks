@@ -1,8 +1,6 @@
 import shows.PaidShow;
 import shows.Show;
 
-import java.time.Duration;
-import java.util.List;
 import java.util.Queue;
 
 public class Schedule {
@@ -51,5 +49,7 @@ public class Schedule {
     public boolean equals(Object obj) {
         return schedule.equals(((Schedule) obj).schedule);
     }
+
+
 
 }
