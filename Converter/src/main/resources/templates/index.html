@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Конвертер</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Overpass&display=swap" rel="stylesheet">
+    <link th:href="@{./css/styles.css}" rel="stylesheet">
+</head>
+<body>
+<header>
+    <img th:src="@{./img/logo3.png}" alt="logo" class="logo">
+    <div class="item"><a th:href="@{/}">Главная</a></div>
+    <div class="item"><a th:href="@{/categories}">Конвертер</a></div>
+</header>
+
+<main id="main" class="index">
+    <div class="wrapper"><div class="info">Конвертируйте величины</div></div>
+    <div class="wrapper"><div class="info">Легкий поиск по категориям</div></div>
+    <div class="wrapper"><div class="info">Создавайте свои собственные категории и конвертеры</div></div>
+<!--    <div class="wrapper"><div class="info">Lorem ipsum dolor sit amet, consectetur </div></div>-->
+</main>
+
+<footer>
+</footer>
+
+<!--<script th:inline="javascript">-->
+<!--    const categories = [[${categories}]];-->
+<!--    console.log(categories)-->
+<!--    let main = document.getElementById("main");-->
+<!--    for (let i = 0; i < categories.length; i++) {-->
+<!--        $("<div id=" + categories[i].id + ">" + categories[i].title + "<div>").appendTo(main)-->
+<!--    }-->
+<!--</script>-->
+</body>
+</html>

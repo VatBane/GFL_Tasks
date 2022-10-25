@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Конвертер</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Overpass&display=swap" rel="stylesheet">
+    <link th:href="@{../../css/styles.css}" rel="stylesheet">
+</head>
+<body>
+<header>
+    <img th:src="@{../../img/logo3.png}" alt="logo" class="logo">
+    <div class="item"><a th:href="@{/}">Главная</a></div>
+    <div class="item"><a th:href="@{/categories}">Конвертер</a></div>
+</header>
+
+<main id="main" class="create">
+    <!--    <label for="name">Название категории</label>-->
+    <!--    <input type="text" name="name" id="name" placeholder="Название">-->
+    <!--    <button onclick="create()">Создать</button>-->
+<!--    <div>-->
+<!--        <label for="category">Название категории</label>-->
+<!--        <input type="text" name="name" id="category" placeholder="">-->
+<!--    </div>-->
+    <div>
+        <label for="from">Конвертировать с:</label>
+        <input type="text" name="name" id="from" placeholder="Начальная величина">
+    </div>
+    <div>
+        <label for="to">Конвертировать в:</label>
+        <input type="text" name="name" id="to" placeholder="Итоговая величина">
+    </div>
+    <div>
+        <label for="multiplier">Коэффициент</label>
+        <input type="number" name="name" id="multiplier" placeholder="Коэффициент">
+    </div>
+
+    <button onclick="create()">Создать</button>
+</main>
+
+<footer>
+</footer>
+
+<script th:inline="javascript">
+    const create = async () => {
+        let fromQuantity = document.getElementById("from");
+        fromQuantity = fromQuantity.value.trim();
+        let toQuantity = document.getElementById("to")
+        toQuantity = toQuantity.value.trim()
+        let multiplier = document.getElementById("multiplier")
+        multiplier = multiplier.value;
+        let categoryId = window.location.href.split("/")
+        if (!fromQuantity || !toQuantity || !multiplier)
+            alert("Введите все данные");
+        if (multiplier == 0)
+            alert("Введите коэффициент");
+        const res = await fetch("http://localhost:8080/api/convertations", {
+            method: "POST",
+            body: JSON.stringify({
+                fromQuantity: fromQuantity,
+                toQuantity: toQuantity,
+                multiplier: multiplier,
+                categoryId: categoryId[4]
+            }),
+            headers: {
+                "Content-Type": 'application/json'
+            }
+        });
+        const data = await res.json();
+
+        if (data.message)
+            alert(data.message);
+        else {
+            categoryId = categoryId.filter(function(item) {
+                return item !== categoryId[5]
+            });
+            window.location.href = categoryId.join("/")
+        }
+    }
+</script>
+</body>
+</html>

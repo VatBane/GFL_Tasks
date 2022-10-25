@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Конвертер</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Overpass&display=swap" rel="stylesheet">
+    <link th:href="@{../css/styles.css}" rel="stylesheet">
+</head>
+<body>
+<header>
+    <img th:src="@{../img/logo3.png}" alt="logo" class="logo">
+    <div class="item"><a th:href="@{/}">Главная</a></div>
+    <div class="item"><a th:href="@{/categories}">Конвертер</a></div>
+</header>
+
+<main id="main">
+<!--    <label for="name">Название категории</label>-->
+<!--    <input type="text" name="name" id="name" placeholder="Название">-->
+<!--    <button onclick="create()">Создать</button>-->
+    <label for="name">Название категории</label>
+    <input type="text" name="name" id="name" placeholder="Название">
+    <button onclick="create()">Создать</button>
+</main>
+
+<footer>
+</footer>
+
+<script th:inline="javascript">
+    const create = async () => {
+        let title = document.getElementById("name");
+        title = title.value.trim()
+        if (!title)
+            alert("Введите название");
+        const res = await fetch("http://localhost:8080/api/category", {
+            method: "POST",
+            body: JSON.stringify({title: title}),
+            headers: {
+                "Content-Type": 'application/json'
+            }
+        });
+        const data = await res.json();
+
+        if (data.message)
+            alert(data.message);
+        else
+            window.location.href="http://localhost:8080/categories"
+    }
+</script>
+<!--<script th:inline="javascript">-->
+<!--    const categories = [[${categories}]];-->
+<!--    console.log(categories)-->
+<!--    let main = document.getElementById("main");-->
+<!--    for (let i = 0; i < categories.length; i++) {-->
+<!--        $("<div id=" + categories[i].id + ">" + categories[i].title + "<div>").appendTo(main)-->
+<!--    }-->
+<!--</script>-->
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Конвертер</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Overpass&display=swap" rel="stylesheet">
+    <link th:href="@{./css/styles.css}" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <img th:src="@{./img/logo3.png}" alt="logo" class="logo">
+        <div class="item"><a th:href="@{/}">Главная</a></div>
+        <div class="item"><a th:href="@{/categories}">Конвертер</a></div>
+    </header>
+
+    <main id="main">
+
+    </main>
+
+    <footer>
+
+    </footer>
+
+    <script th:inline="javascript">
+        const hello = (event) => {
+            window.location.href=`http://localhost:8080/categories/${event.data.id}`
+        }
+        const createNewCategory = (event) => {
+            window.location.href='http://localhost:8080/categories/create'
+        }
+        const categories = [[${categories}]];
+        let main = document.getElementById("main");
+        for (let i = 0; i < categories.length; i++) {
+            $("<div class='wrapper'><div id='" + categories[i].id + "' class = 'category'>" + categories[i].title +
+                "<sub>Кол-во конвертеров: " + categories[i].count + "</sub></div></div>")
+                .on("click", categories[i], hello)
+                .appendTo(main)
+        }
+        $("<div class='wrapper'><div id='new' class = 'category'>Новая категория</div></div>")
+            .on("click", createNewCategory)
+            .appendTo(main)
+  </script>
+</body>
+</html>
